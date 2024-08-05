@@ -1,4 +1,4 @@
-name: "Reusable Workflow: Normalize Dev Fork Settings and Metadata"
+name: "Reusable Workflow: Normalize Development Fork Settings and Metadata"
 
 on:
   workflow_call:
