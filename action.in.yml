@@ -1,0 +1,40 @@
+name: 'Development Fork Settings and Metadata Normalizer'
+description: 'Enforces policies on development forks of repositories'
+inputs:
+  'token':
+    description: 'GitHub token with administration:write permission for all repositories'
+    required: true
+  'tag':
+    description: 'Tag name for dev forks'
+    required: false
+    default: 'dev-fork'
+  'prevent-all-updates':
+    description: 'Prevent all updates'
+    required: false
+    default: 'false'
+  'prevent-name-updates':
+    description: 'Prevent name updates'
+    required: false
+    default: 'false'
+  'prevent-description-updates':
+    description: 'Prevent description updates'
+    required: false
+    default: 'false'
+  'prevent-homepage-updates':
+    description: 'Prevent homepage updates'
+    required: false
+    default: 'false'
+runs:
+  using: 'composite'
+  steps:
+    - uses: 'actions/github-script@v7'
+      with:
+        'github-token': ${{ inputs.github-token }}
+        'script': |
+          // This will be replaced with the compiled JavaScript
+      env:
+        'TAG_INPUT': ${{ inputs.tag }}
+        'PREVENT_ALL_UPDATES_INPUT': ${{ inputs.prevent-all-updates }}
+        'PREVENT_NAME_UPDATES_INPUT': ${{ inputs.prevent-name-updates }}
+        'PREVENT_DESCRIPTION_UPDATES_INPUT': ${{ inputs.prevent-description-updates }}
+        'PREVENT_HOMEPAGE_UPDATES_INPUT': ${{ inputs.prevent-homepage-updates }}
