@@ -1,0 +1,47 @@
+name: "Reusable Workflow: Normalize Dev Fork Settings and Metadata"
+
+on:
+  workflow_call:
+    inputs:
+      'tag':
+        description: "Tag name for dev forks"
+        required: false
+        type: string
+        default: ''
+      'prevent-all-updates':
+        description: "Prevent all updates"
+        required: false
+        type: boolean
+        default: false
+      'prevent-name-updates':
+        description: "Prevent name updates"
+        required: false
+        type: boolean
+        default: false
+      'prevent-description-updates':
+        description: "Prevent description updates"
+        required: false
+        type: boolean
+        default: false
+      'prevent-homepage-updates':
+        description: "Prevent homepage updates"
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      'token':
+        description: "GitHub token with 'administration:write' permission for all repositories"
+        required: true
+
+jobs:
+  enforce-policies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-rindeal/dev-fork-normalizer@master
+        with:
+          token: ${{ secrets.token }}
+          tag: ${{ inputs.tag }}
+          prevent-all-updates: ${{ inputs.prevent-all-updates }}
+          prevent-name-updates: ${{ inputs.prevent-name-updates }}
+          prevent-description-updates: ${{ inputs.prevent-description-updates }}
+          prevent-homepage-updates: ${{ inputs.prevent-homepage-updates }}
