@@ -79,7 +79,7 @@ export default async function main(
   exec: typeof import('@actions/exec'),
   require: NodeRequire
 ): Promise<void> {
-    const assert = (condition: boolean, message?: string): void => {
+  const assert = (condition: boolean, message?: string): void => {
     if (!condition) throw new Error(message || "Assertion failed");
   };
 
